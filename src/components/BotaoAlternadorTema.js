@@ -1,9 +1,12 @@
-// Importando o React e o styled-components
 import React from 'react';
 import styled from 'styled-components';
-import { BotaoAlternadorTemaPropTypes } from './propTypes'; // Certifique-se de que o caminho para o arquivo está correto
+import { BotaoAlternadorTemaPropTypes } from './propTypes';
 
-// Estilizando o botão alternador de tema
+const breakpoints = {
+  tablet: '768px',
+  phone: '576px',
+};
+
 const Botao = styled.button`
   background-color: ${({ theme }) => theme.buttonBgColor};
   color: ${({ theme }) => theme.buttonTextColor};
@@ -17,20 +20,22 @@ const Botao = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.buttonHoverBgColor};
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
 `;
 
-// Componente do botão alternador de tema
 const BotaoAlternadorTema = ({ alternarTema }) => {
-  return (
-    <Botao onClick={alternarTema}>
-      Alternar Tema
-    </Botao>
-  );
+  return <Botao onClick={alternarTema}>Alternar Tema</Botao>;
 };
 
-// Aplicando PropTypes usando a importação do arquivo propTypes.js
 BotaoAlternadorTema.propTypes = BotaoAlternadorTemaPropTypes;
 
-// Exportando o componente BotaoAlternadorTema
 export default BotaoAlternadorTema;
-

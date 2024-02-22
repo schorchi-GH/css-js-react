@@ -1,16 +1,27 @@
-// Importando o React e o styled-components
 import React from 'react';
 import styled from 'styled-components';
 import Vaga from './Vaga';
+import { ListaVagasPropTypes } from './propTypes';
 
-// Estilizando a lista de vagas
+const breakpoints = {
+  tablet: '768px',
+  phone: '576px',
+};
+
 const ListaContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    gap: 15px;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    gap: 10px;
+  }
 `;
 
-// Componente da lista de vagas
 const ListaVagas = ({ vagas }) => {
   return (
     <ListaContainer>
@@ -20,5 +31,7 @@ const ListaVagas = ({ vagas }) => {
     </ListaContainer>
   );
 };
+
+ListaVagas.propTypes = ListaVagasPropTypes;
 
 export default ListaVagas;

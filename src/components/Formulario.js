@@ -1,8 +1,11 @@
-// Importando o React e o styled-components
 import React from 'react';
 import styled from 'styled-components';
 
-// Estilizando os elementos do formulário
+const breakpoints = {
+  tablet: '768px',
+  phone: '576px',
+};
+
 const Form = styled.form`
   display: flex;
   flex-direction: column;
@@ -10,6 +13,14 @@ const Form = styled.form`
   background-color: ${({ theme }) => theme.formBgColor};
   padding: 20px;
   border-radius: 8px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 15px;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    padding: 10px;
+  }
 `;
 
 const Input = styled.input`
@@ -22,6 +33,14 @@ const Input = styled.input`
   &:focus {
     border-color: ${({ theme }) => theme.inputFocusBorderColor};
     outline: none;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 8px;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    padding: 6px;
   }
 `;
 
@@ -37,9 +56,16 @@ const Button = styled.button`
   &:hover {
     background-color: ${({ theme }) => theme.buttonHoverBgColor};
   }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 8px 18px;
+  }
+
+  @media (max-width: ${breakpoints.phone}) {
+    padding: 6px 16px;
+  }
 `;
 
-// Componente do formulário
 const Formulario = () => {
   return (
     <Form>
