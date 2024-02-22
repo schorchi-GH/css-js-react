@@ -1,6 +1,7 @@
 // Importando o React e o styled-components
 import React from 'react';
 import styled from 'styled-components';
+import { BotaoAlternadorTemaPropTypes } from './propTypes'; // Certifique-se de que o caminho para o arquivo está correto
 
 // Estilizando o botão alternador de tema
 const Botao = styled.button`
@@ -27,4 +28,9 @@ const BotaoAlternadorTema = ({ alternarTema }) => {
   );
 };
 
+// Aplicando PropTypes usando a importação do arquivo propTypes.js
+BotaoAlternadorTema.propTypes = BotaoAlternadorTemaPropTypes;
+
+// Exportando o componente BotaoAlternadorTema
 export default BotaoAlternadorTema;
+

@@ -9,25 +9,16 @@ import Formulario from './components/Formulario';
 import Vaga from './components/Vaga';
 import ListaVagas from './components/ListaVagas';
 
-// Componente principal da aplicação
 const App = () => {
-  // Definindo o estado inicial baseado nas preferências do sistema do usuário
   const [modoTema, setModoTema] = useState(() => {
-    const temaSalvo = localStorage.getItem('tema') // Tentativa de recuperar o tema do localStorage
-    if (temaSalvo) {
-      return temaSalvo;
-    } else {
-      // Usa as preferências do sistema se não houver tema salvo
-      return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
-    }
+    const temaSalvo = localStorage.getItem('tema');
+    return temaSalvo || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro');
   });
 
-  // Função para alternar entre os modos de tema
   const alternarTema = () => {
     setModoTema(modoTemaAtual => modoTemaAtual === 'claro' ? 'escuro' : 'claro');
   };
 
-  // Efeito para armazenar a preferência de tema do usuário no localStorage
   useEffect(() => {
     localStorage.setItem('tema', modoTema);
   }, [modoTema]);
@@ -40,8 +31,8 @@ const App = () => {
         <Cabecalho />
         <Hero />
         <Formulario />
-        <Vaga />
-        <ListaVagas />
+        <Vaga titulo="Título da Vaga" descricao="Descrição da Vaga" />
+        <ListaVagas vagas={[{ id: 1, titulo: 'Desenvolvedor Frontend', descricao: 'Descrição da vaga para Desenvolvedor Frontend' }]} />
       </div>
     </ThemeProvider>
   );
